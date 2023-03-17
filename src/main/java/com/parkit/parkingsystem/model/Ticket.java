@@ -11,6 +11,8 @@ public class Ticket {
     private Date inTime;
     private Date outTime;
 
+    private boolean isReccurringUser;
+
     public int getId() {
         return id;
     }
@@ -57,5 +59,13 @@ public class Ticket {
 
     public void setOutTime(Date outTime) {
         this.outTime = outTime;
+    }
+
+    public boolean isReccurringUser() {
+        return isReccurringUser;
+    }
+
+    public void setReccurringUser(boolean reccurringUser) {
+        isReccurringUser = reccurringUser;
     }
 }

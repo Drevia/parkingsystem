@@ -7,8 +7,11 @@ import java.util.concurrent.TimeUnit;
 
 public class FareCalculatorService {
 
-    public void calculateFare(Ticket ticket){
+    //rajout d'une boolean discount pour la reduction de 5%
+    public void calculateFare(Ticket ticket, boolean discount){
         if( (ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime())) ){
+            System.out.println(ticket.getInTime().getTime());
+            System.out.println(ticket.getOutTime().getTime());
             throw new IllegalArgumentException("Out time provided is incorrect:"+ticket.getOutTime().toString());
         }
 
@@ -25,17 +28,31 @@ public class FareCalculatorService {
 
         //Puis en heures
         double durationInHours = (double) duration / 60;
+        if (durationInHours < 0.5) {
+            ticket.setPrice(0);
+        } else {
 
-        switch (ticket.getParkingSpot().getParkingType()){
-            case CAR: {
-                ticket.setPrice(durationInHours * Fare.CAR_RATE_PER_HOUR);
-                break;
+            switch (ticket.getParkingSpot().getParkingType()){
+                case CAR: {
+                    ticket.setPrice(durationInHours * Fare.CAR_RATE_PER_HOUR);
+                    break;
+                }
+                case BIKE: {
+                    ticket.setPrice(durationInHours * Fare.BIKE_RATE_PER_HOUR);
+                    break;
+                }
+                default: throw new IllegalArgumentException("Unkown Parking Type");
             }
-            case BIKE: {
-                ticket.setPrice(durationInHours * Fare.BIKE_RATE_PER_HOUR);
-                break;
-            }
-            default: throw new IllegalArgumentException("Unkown Parking Type");
         }
+        //set the price with 5% discount if it's true
+        if (discount) {
+            ticket.setPrice(ticket.getPrice() * 0.95);
+        }
+    }
+
+    //constructor of calculateFare but without discount
+    public void calculateFare(Ticket ticket){
+        //verifier l'existence du vehicule pour la reduction
+        calculateFare(ticket, false);
     }
 }
