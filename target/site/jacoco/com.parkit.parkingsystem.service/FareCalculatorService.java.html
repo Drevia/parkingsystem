@@ -10,48 +10,50 @@ import java.util.concurrent.TimeUnit;
     //rajout d'une boolean discount pour la reduction de 5%
     public void calculateFare(Ticket ticket, boolean discount){
 <span class="pc bpc" id="L12" title="1 of 4 branches missed.">        if( (ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime())) ){</span>
-<span class="fc" id="L13">            throw new IllegalArgumentException(&quot;Out time provided is incorrect:&quot;+ticket.getOutTime().toString());</span>
+<span class="fc" id="L13">            System.out.println(ticket.getInTime().getTime());</span>
+<span class="fc" id="L14">            System.out.println(ticket.getOutTime().getTime());</span>
+<span class="fc" id="L15">            throw new IllegalArgumentException(&quot;Out time provided is incorrect:&quot;+ticket.getOutTime().toString());</span>
         }
 
         //changement de getHours a getDate pour avoir plus de precision
-<span class="fc" id="L17">        long inTime = ticket.getInTime().getTime();</span>
-<span class="fc" id="L18">        long outTime = ticket.getOutTime().getTime();</span>
+<span class="fc" id="L19">        long inTime = ticket.getInTime().getTime();</span>
+<span class="fc" id="L20">        long outTime = ticket.getOutTime().getTime();</span>
 
         //TODO: Some tests are failing here. Need to check if this logic is correct
         //Calcul de la différence en millisecondes entre le temps d'entrée et de sortie
-<span class="fc" id="L22">        long duration = outTime - inTime;</span>
+<span class="fc" id="L24">        long duration = outTime - inTime;</span>
 
         //conversion du resultat en minutes
-<span class="fc" id="L25">        duration = TimeUnit.MILLISECONDS.toMinutes(duration);</span>
+<span class="fc" id="L27">        duration = TimeUnit.MILLISECONDS.toMinutes(duration);</span>
 
         //Puis en heures
-<span class="fc" id="L28">        double durationInHours = (double) duration / 60;</span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (durationInHours &lt; 0.5) {</span>
-<span class="fc" id="L30">            ticket.setPrice(0);</span>
+<span class="fc" id="L30">        double durationInHours = (double) duration / 60;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (durationInHours &lt; 0.5) {</span>
+<span class="fc" id="L32">            ticket.setPrice(0);</span>
         } else {
 
-<span class="pc bpc" id="L33" title="1 of 3 branches missed.">            switch (ticket.getParkingSpot().getParkingType()){</span>
+<span class="pc bpc" id="L35" title="1 of 3 branches missed.">            switch (ticket.getParkingSpot().getParkingType()){</span>
                 case CAR: {
-<span class="fc" id="L35">                    ticket.setPrice(durationInHours * Fare.CAR_RATE_PER_HOUR);</span>
-<span class="fc" id="L36">                    break;</span>
+<span class="fc" id="L37">                    ticket.setPrice(durationInHours * Fare.CAR_RATE_PER_HOUR);</span>
+<span class="fc" id="L38">                    break;</span>
                 }
                 case BIKE: {
-<span class="fc" id="L39">                    ticket.setPrice(durationInHours * Fare.BIKE_RATE_PER_HOUR);</span>
-<span class="fc" id="L40">                    break;</span>
+<span class="fc" id="L41">                    ticket.setPrice(durationInHours * Fare.BIKE_RATE_PER_HOUR);</span>
+<span class="fc" id="L42">                    break;</span>
                 }
-<span class="nc" id="L42">                default: throw new IllegalArgumentException(&quot;Unkown Parking Type&quot;);</span>
+<span class="nc" id="L44">                default: throw new IllegalArgumentException(&quot;Unkown Parking Type&quot;);</span>
             }
         }
         //set the price with 5% discount if it's true
-<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (discount) {</span>
-<span class="fc" id="L47">            ticket.setPrice(ticket.getPrice() * 0.95);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (discount) {</span>
+<span class="fc" id="L49">            ticket.setPrice(ticket.getPrice() * 0.95);</span>
         }
-<span class="fc" id="L49">    }</span>
+<span class="fc" id="L51">    }</span>
 
     //constructor of calculateFare but without discount
     public void calculateFare(Ticket ticket){
         //verifier l'existence du vehicule pour la reduction
-<span class="fc" id="L54">        calculateFare(ticket, false);</span>
-<span class="fc" id="L55">    }</span>
+<span class="fc" id="L56">        calculateFare(ticket, false);</span>
+<span class="fc" id="L57">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

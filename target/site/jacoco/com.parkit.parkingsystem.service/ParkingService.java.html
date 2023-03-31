@@ -45,9 +45,9 @@ public class ParkingService {
 <span class="fc" id="L45">                ticket.setInTime(inTime);</span>
 <span class="fc" id="L46">                ticket.setOutTime(null);</span>
 <span class="fc" id="L47">                ticketDAO.saveTicket(ticket);</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">                if (ticketDAO.getNbTicket(vehicleRegNumber) &gt; 1) {</span>
-<span class="fc" id="L49">                    ticket.setReccurringUser(true);</span>
-<span class="fc" id="L50">                    System.out.println(&quot;Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.&quot;);</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">                if (ticketDAO.getNbTicket(vehicleRegNumber) &gt; 1) {</span>
+<span class="nc" id="L49">                    ticket.setReccurringUser(true);</span>
+<span class="nc" id="L50">                    System.out.println(&quot;Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.&quot;);</span>
                 }
 <span class="fc" id="L52">                System.out.println(&quot;Generated Ticket and saved in DB&quot;);</span>
 <span class="fc" id="L53">                System.out.println(&quot;Please park your vehicle in spot number:&quot; + parkingSpot.getId());</span>
@@ -107,8 +107,8 @@ public class ParkingService {
 <span class="fc" id="L107">            Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);</span>
 <span class="fc" id="L108">            Date outTime = new Date(System.currentTimeMillis());</span>
 <span class="fc" id="L109">            ticket.setOutTime(outTime);</span>
-<span class="fc bfc" id="L110" title="All 2 branches covered.">            if (ticketDAO.getNbTicket(vehicleRegNumber) &gt; 1) {</span>
-<span class="fc" id="L111">                fareCalculatorService.calculateFare(ticket, true);</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">            if (ticketDAO.getNbTicket(vehicleRegNumber) &gt; 1) {</span>
+<span class="nc" id="L111">                fareCalculatorService.calculateFare(ticket, true);</span>
             } else {
 <span class="fc" id="L113">                fareCalculatorService.calculateFare(ticket);</span>
             }
@@ -121,8 +121,8 @@ public class ParkingService {
 <span class="fc" id="L121">            } else {</span>
 <span class="fc" id="L122">                System.out.println(&quot;Unable to update ticket information. Error occurred&quot;);</span>
             }
-<span class="fc" id="L124">        } catch (Exception e) {</span>
-<span class="fc" id="L125">            logger.error(&quot;Unable to process exiting vehicle&quot;, e);</span>
+<span class="nc" id="L124">        } catch (Exception e) {</span>
+<span class="nc" id="L125">            logger.error(&quot;Unable to process exiting vehicle&quot;, e);</span>
 <span class="fc" id="L126">        }</span>
 <span class="fc" id="L127">    }</span>
 

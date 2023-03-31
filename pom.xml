@@ -65,6 +65,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -152,6 +153,9 @@
                 <configuration>
                     <excludes>
                         <exclude>com/parkit/parkingsystem/dao/**/*</exclude>
+                        <exclude>com/parkit/parkingsystem/config/**/*</exclude>
+                        <exclude>**/*InteractiveShell.class</exclude>
+                        <exclude>com/parkit/parkingsystem/App</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -176,6 +180,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </reporting>
