@@ -45,7 +45,7 @@ public class ParkingService {
                 ticket.setInTime(inTime);
                 ticket.setOutTime(null);
                 ticketDAO.saveTicket(ticket);
-                if (ticketDAO.getNbTicket(vehicleRegNumber) > 1) {
+                if (ticketDAO.getNbTicket(vehicleRegNumber) >= 1) {
                     ticket.setReccurringUser(true);
                     System.out.println("Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");
                 }
